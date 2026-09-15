@@ -10,7 +10,8 @@ COPY apps/web ./apps/web
 COPY packages/ui ./packages/ui
 COPY packages/typescript-config ./packages/typescript-config
 
-RUN node -e "const fs=require('fs'); const p=JSON.parse(fs.readFileSync('apps/web/package.json','utf8')); delete p.devDependencies['@repo/eslint-config']; delete p.devDependencies.eslint; fs.writeFileSync('apps/web/package.json', JSON.stringify(p,null,2));"
+RUN node -e "const fs=require('fs'); for (const file of ['apps/web/package.json','packages/ui/package.json']) { const p=JSON.parse(fs.readFileSync(file,'utf8')); for (const key of ['dependencies','devDependencies']) { if (!p[key]) continue; delete p[key]['@repo/eslint-config']; delete p[key].eslint; } fs.writeFileSync(file, JSON.stringify(p,null,2)); }"
+RUN rm -f apps/web/eslint.config.js packages/ui/eslint.config.mjs
 
 ENV NODE_OPTIONS=--max-old-space-size=768
 ENV NEXT_TELEMETRY_DISABLED=1
