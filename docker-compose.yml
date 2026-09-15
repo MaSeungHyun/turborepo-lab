@@ -26,10 +26,12 @@ services:
     build:
       context: .
       dockerfile: apps/web/Dockerfile
+      args:
+        API_URL: http://server:4000
     ports:
       - "3000:3000"
     environment:
-      API_URL: ${API_URL:-http://server:4000}
+      API_URL: http://server:4000
       WEB_ORIGIN: ${WEB_ORIGIN:-http://localhost:3000}
     depends_on:
       server:
