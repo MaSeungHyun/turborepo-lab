@@ -13,6 +13,8 @@ COPY packages/typescript-config ./packages/typescript-config
 RUN node -e "const fs=require('fs'); for (const file of ['apps/web/package.json','packages/ui/package.json']) { const p=JSON.parse(fs.readFileSync(file,'utf8')); for (const key of ['dependencies','devDependencies']) { if (!p[key]) continue; delete p[key]['@repo/eslint-config']; delete p[key].eslint; } fs.writeFileSync(file, JSON.stringify(p,null,2)); }"
 RUN rm -f apps/web/eslint.config.js packages/ui/eslint.config.mjs
 
+ARG API_URL=http://server:4000
+ENV API_URL=$API_URL
 ENV NODE_OPTIONS=--max-old-space-size=768
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN pnpm install --filter web...
@@ -26,6 +28,8 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV HOSTNAME=0.0.0.0
 ENV PORT=3000
+ARG API_URL=http://server:4000
+ENV API_URL=$API_URL
 COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/apps/web/.next/static ./apps/web/.next/static
 RUN mkdir -p apps/web/public
