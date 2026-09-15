@@ -1,0 +1,17 @@
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-brand: #2a8af6;
+  --color-brand-foreground: #ffffff;
+  --radius-md: 0.5rem;
+  --font-sans:
+    var(--font-geist-sans), "Pretendard Variable", Pretendard, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  @theme {
+    --color-background: #0a0a0a;
+    --color-foreground: #ededed;
+  }
+}

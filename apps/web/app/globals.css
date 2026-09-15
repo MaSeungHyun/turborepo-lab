@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@import "@repo/ui/styles.css";
+@import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+@source "../../../packages/ui/src";
