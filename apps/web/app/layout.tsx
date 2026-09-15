@@ -26,8 +26,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="bg-background font-sans text-foreground">{children}</body>
+    <html lang="ko" className={`h-full ${geistSans.variable} ${geistMono.variable}`}>
+      <body className="flex min-h-full w-full flex-col overflow-hidden bg-background font-sans text-foreground">
+        {children}
+      </body>
     </html>
   );
 }
