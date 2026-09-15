@@ -1,19 +1,16 @@
-FROM node:24-alpine AS pruner
-WORKDIR /app
-RUN apk add --no-cache libc6-compat
-RUN corepack enable && corepack prepare pnpm@11.25.0 --activate
-COPY . .
-RUN pnpm dlx turbo@2.10.13 prune web --docker
-
 FROM node:24-alpine AS builder
 WORKDIR /app
 RUN apk add --no-cache libc6-compat
 RUN corepack enable && corepack prepare pnpm@11.25.0 --activate
-COPY --from=pruner /app/out/json/ .
-COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
-RUN pnpm install --frozen-lockfile
-COPY --from=pruner /app/out/full/ .
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json .npmrc ./
+COPY apps/web ./apps/web
+COPY apps/server/package.json ./apps/server/package.json
+COPY packages ./packages
+
+ENV NODE_OPTIONS=--max-old-space-size=768
 ENV NEXT_TELEMETRY_DISABLED=1
+RUN pnpm install --frozen-lockfile --filter web...
 RUN pnpm --filter web build
 
 FROM node:24-alpine AS runner
