@@ -26,7 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`h-full ${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="ko"
+      data-theme="default"
+      className={`h-full ${geistSans.variable} ${geistMono.variable}`}
+    >
       <body className="flex min-h-full w-full flex-col overflow-hidden bg-background font-sans text-foreground">
         {children}
       </body>

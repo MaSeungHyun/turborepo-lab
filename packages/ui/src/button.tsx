@@ -8,10 +8,7 @@ type ButtonProps = ComponentProps<"button"> & {
 export function Button({ className, ...props }: ButtonProps) {
   return (
     <button
-      className={cn(
-        "rounded-md bg-brand px-4 py-2 text-brand-foreground",
-        className,
-      )}
+      className={cn("rounded-sm bg-brand px-4 py-2 text-foreground", className)}
       {...props}
     />
   );
