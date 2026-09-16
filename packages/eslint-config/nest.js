@@ -1,6 +1,9 @@
+import { createRequire } from "node:module";
 import babelParser from "@babel/eslint-parser";
 import globals from "globals";
 import { config as baseConfig } from "./base.js";
+
+const require = createRequire(import.meta.url);
 
 /**
  * A shared ESLint configuration for NestJS apps.
@@ -16,10 +19,16 @@ export const nestJsConfig = [
       parserOptions: {
         requireConfigFile: false,
         babelOptions: {
-          presets: ["@babel/preset-typescript"],
+          presets: [require.resolve("@babel/preset-typescript")],
           plugins: [
-            ["@babel/plugin-proposal-decorators", { version: "legacy" }],
-            ["@babel/plugin-transform-class-properties", { loose: true }],
+            [
+              require.resolve("@babel/plugin-proposal-decorators"),
+              { version: "legacy" },
+            ],
+            [
+              require.resolve("@babel/plugin-transform-class-properties"),
+              { loose: true },
+            ],
           ],
         },
       },
