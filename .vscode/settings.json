@@ -1,0 +1,12 @@
+{
+  "eslint.workingDirectories": [
+    { "directory": "apps/web", "changeProcessCWD": true },
+    { "directory": "apps/server", "changeProcessCWD": true },
+    { "directory": "packages/ui", "changeProcessCWD": true }
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "never"
+  }
+}

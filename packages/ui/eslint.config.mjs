@@ -8,4 +8,10 @@ export default [
     entryPoint: "app/globals.css",
     cwd: "../../apps/web",
   }),
+  {
+    files: ["**/*.{js,jsx,ts,tsx}"],
+    rules: {
+      "better-tailwindcss/enforce-consistent-class-order": "off",
+    },
+  },
 ];
