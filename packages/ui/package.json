@@ -6,7 +6,7 @@
     "./styles.css": "./src/styles.css",
     "./cn": "./src/lib/cn.ts",
     "./lib/*": "./src/lib/*.ts",
-    "./*": "./src/*.tsx"
+    "./*": "./src/*/index.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -23,6 +23,7 @@
     "typescript": "7.0.2"
   },
   "dependencies": {
+    "@radix-ui/react-avatar": "^1.2.6",
     "clsx": "^2.1.1",
     "lucide-react": "^1.46.0",
     "react": "19.2.8",
