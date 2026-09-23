@@ -18,7 +18,10 @@ export default function Icon({
 
   return (
     <LucideIcon
-      className={cn("size-5 stroke-secondary", className)}
+      className={cn(
+        "stroke-1.5 size-5 stroke-text-primary group-hover:stroke-secondary",
+        className,
+      )}
       onClick={onClick}
       {...props}
     />
